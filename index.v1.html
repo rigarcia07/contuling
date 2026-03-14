@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Roger Garcia — SMB/SME Operations & Strategy Consultant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Roger Garcia is a consultant and digital strategist in Toronto helping complex SMB and SME businesses untangle operations, implement AI & automation, and build systems that scale." />
+  <style>
+    /* ────────────────────────────────────────────────
+       TOKENS
+    ──────────────────────────────────────────────── */
+    :root {
+      --bg:          #07090f;
+      --surface:     #0d1117;
+      --surface-2:   #111822;
+      --border:      rgba(255, 255, 255, 0.07);
+      --border-mid:  rgba(255, 255, 255, 0.12);
+      --accent:      #4ade80;
+      --accent-dim:  rgba(74, 222, 128, 0.08);
+      --accent-glow: rgba(74, 222, 128, 0.22);
+      --text:        #f0f4f8;
+      --text-2:      #8b95a1;
+      --text-3:      #525c68;
+      --sans:        system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --r-sm:        10px;
+      --r-md:        16px;
+      --r-lg:        22px;
+      --r-pill:      999px;
+      --ease:        cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ────────────────────────────────────────────────
+       RESET & BASE
+    ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(74, 222, 128, 0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(59, 130, 246, 0.04) 0%, transparent 60%);
+      color: var(--text);
+      font-family: var(--sans);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font-family: var(--sans); cursor: pointer; }
+
+    /* ────────────────────────────────────────────────
+       LAYOUT WRAPPER
+    ──────────────────────────────────────────────── */
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 40px 24px 72px;
+    }
+
+    @media (max-width: 640px) {
+      .wrap { padding: 24px 16px 56px; }
+    }
+
+    /* ────────────────────────────────────────────────
+       NAV
+    ──────────────────────────────────────────────── */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 56px;
+      gap: 16px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Wordmark logo mark */
+    .logotype {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #16a34a 0%, #0f172a 100%);
+      border: 1px solid rgba(74, 222, 128, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--accent);
+      flex-shrink: 0;
+      box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.06);
+    }
+
+    .nav-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+
+    .nav-role {
+      font-size: 0.75rem;
+      color: var(--text-2);
+      margin-top: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-link {
+      font-size: 0.8rem;
+      color: var(--text-2);
+      padding: 6px 12px;
+      border-radius: var(--r-pill);
+      border: 1px solid transparent;
+      background: none;
+      transition: color 140ms, background 140ms, border-color 140ms;
+    }
+
+    .nav-link:hover {
+      color: var(--text);
+      background: var(--surface);
+      border-color: var(--border);
+    }
+
+    .nav-link.cta {
+      color: var(--accent);
+      border-color: rgba(74, 222, 128, 0.35);
+      background: var(--accent-dim);
+    }
+
+    .nav-link.cta:hover {
+      background: rgba(74, 222, 128, 0.14);
+      border-color: rgba(74, 222, 128, 0.6);
+    }
+
+    @media (max-width: 560px) {
+      .nav { margin-bottom: 40px; }
+      .nav-link:not(.cta) { display: none; }
+    }
+
+    /* ────────────────────────────────────────────────
+       GRID
+    ──────────────────────────────────────────────── */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    .col-left  { display: flex; flex-direction: column; gap: 20px; }
+    .col-right { display: flex; flex-direction: column; gap: 16px; }
+
+    /* ────────────────────────────────────────────────
+       HERO
+    ──────────────────────────────────────────────── */
+    .hero {
+      background: var(--surface);
+      border: 1px solid var(--border-mid);
+      border-radius: var(--r-lg);
+      padding: 36px 32px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Decorative glow */
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -60px;
+      left: -60px;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(74, 222, 128, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .hero-label-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.25);
+      animation: blink 2.4s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.4; }
+    }
+
+    .hero h1 {
+      font-size: clamp(1.5rem, 3vw, 1.95rem);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text-2);
+      max-width: 520px;
+      margin-bottom: 28px;
+    }
+
+    .hero-sub strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* Stats row */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+
+    .stat {
+      background: var(--surface-2);
+      padding: 14px 16px;
+    }
+
+    .stat-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-3);
+      margin-bottom: 5px;
+    }
+
+    .stat-value {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .stat-hint {
+      font-size: 0.72rem;
+      color: var(--text-2);
+    }
+
+    @media (max-width: 560px) {
+      .stats { grid-template-columns: 1fr 1fr; }
+      .stats .stat:last-child { grid-column: 1 / -1; }
+    }
+
+    /* CTA row */
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 10px 18px;
+      border-radius: var(--r-pill);
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--text-2);
+      cursor: pointer;
+      transition: all 140ms var(--ease);
+    }
+
+    .btn:hover {
+      color: var(--text);
+      border-color: var(--border-mid);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, rgba(22, 163, 74, 0.3), rgba(16, 185, 129, 0.15));
+      border-color: rgba(74, 222, 128, 0.5);
+      color: #d1fae5;
+      box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
+      transition: all 200ms var(--ease);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, rgba(22, 163, 74, 0.4), rgba(16, 185, 129, 0.22));
+      border-color: rgba(74, 222, 128, 0.75);
+      box-shadow: 0 8px 32px rgba(22, 163, 74, 0.25);
+      transform: translateY(-1px);
+    }
+
+    .btn-icon { font-size: 0.95rem; }
+
+    .action-note {
+      font-size: 0.76rem;
+      color: var(--text-3);
+      margin-left: 4px;
+    }
+
+    @media (max-width: 480px) {
+      .action-note { display: none; }
+    }
+
+    /* ────────────────────────────────────────────────
+       SECTION LABEL
+    ──────────────────────────────────────────────── */
+    .section-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-3);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .section-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ────────────────────────────────────────────────
+       SERVICES
+    ──────────────────────────────────────────────── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    @media (max-width: 900px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 480px) {
+      .services-grid { grid-template-columns: 1fr; }
+    }
+
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 18px 16px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: border-color 180ms, transform 180ms var(--ease), box-shadow 180ms;
+      cursor: default;
+    }
+
+    .service-card:hover {
+      border-color: var(--border-mid);
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .service-card.featured {
+      border-color: rgba(74, 222, 128, 0.22);
+      background: linear-gradient(160deg, rgba(74, 222, 128, 0.05) 0%, var(--surface) 60%);
+    }
+
+    .service-card.featured:hover {
+      border-color: rgba(74, 222, 128, 0.45);
+    }
+
+    .service-badge {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-3);
+    }
+
+    .service-badge.green { color: var(--accent); }
+
+    .service-title {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+
+    .service-body {
+      font-size: 0.78rem;
+      line-height: 1.6;
+      color: var(--text-2);
+      flex: 1;
+    }
+
+    .service-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+    }
+
+    .service-meta {
+      font-size: 0.7rem;
+      color: var(--text-3);
+    }
+
+    .service-arrow {
+      font-size: 0.75rem;
+      color: var(--text-3);
+    }
+
+    /* ────────────────────────────────────────────────
+       PROCESS
+    ──────────────────────────────────────────────── */
+    .process-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 20px 18px 16px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .steps { grid-template-columns: 1fr; }
+    }
+
+    .step {
+      padding: 12px 12px 10px;
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      background: var(--surface-2);
+    }
+
+    .step-num {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      opacity: 0.7;
+      margin-bottom: 6px;
+    }
+
+    .step-title {
+      font-size: 0.83rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 5px;
+    }
+
+    .step-body {
+      font-size: 0.76rem;
+      line-height: 1.55;
+      color: var(--text-2);
+    }
+
+    /* ────────────────────────────────────────────────
+       SIDEBAR — POSITIONING
+    ──────────────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 20px 18px 16px;
+    }
+
+    .card h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    .card-body {
+      font-size: 0.8rem;
+      line-height: 1.65;
+      color: var(--text-2);
+      margin-bottom: 8px;
+    }
+
+    .card-body strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      padding: 4px 10px;
+      border-radius: var(--r-pill);
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--text-2);
+    }
+
+    .tag.accent {
+      border-color: rgba(74, 222, 128, 0.3);
+      color: var(--accent);
+      background: rgba(74, 222, 128, 0.06);
+    }
+
+    /* ────────────────────────────────────────────────
+       SIDEBAR — PROOF
+    ──────────────────────────────────────────────── */
+    .proof-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .proof-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .proof-line {
+      width: 2px;
+      flex-shrink: 0;
+      margin-top: 5px;
+      background: var(--border);
+      border-radius: 2px;
+      align-self: stretch;
+      min-height: 14px;
+    }
+
+    .proof-item:first-child .proof-line { background: var(--accent); }
+
+    .proof-text {
+      font-size: 0.78rem;
+      line-height: 1.6;
+      color: var(--text-2);
+    }
+
+    .proof-text strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .client-types {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .client-chip {
+      font-size: 0.68rem;
+      padding: 3px 8px;
+      border-radius: var(--r-pill);
+      border: 1px solid var(--border);
+      color: var(--text-3);
+      background: var(--surface-2);
+    }
+
+    /* ────────────────────────────────────────────────
+       SIDEBAR — CONTACT
+    ──────────────────────────────────────────────── */
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid rgba(74, 222, 128, 0.18);
+      border-radius: var(--r-md);
+      padding: 20px 18px 16px;
+      background-image: radial-gradient(ellipse 80% 60% at 100% 0%, rgba(74, 222, 128, 0.07) 0%, transparent 60%);
+    }
+
+    .contact-card h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .contact-body {
+      font-size: 0.78rem;
+      line-height: 1.65;
+      color: var(--text-2);
+      margin-bottom: 14px;
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .contact-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      font-size: 0.82rem;
+      color: var(--text-2);
+      cursor: pointer;
+      transition: all 140ms var(--ease);
+      text-align: left;
+    }
+
+    .contact-btn:hover {
+      border-color: var(--border-mid);
+      color: var(--text);
+      transform: translateX(2px);
+    }
+
+    .contact-btn.primary {
+      border-color: rgba(74, 222, 128, 0.35);
+      background: rgba(74, 222, 128, 0.06);
+      color: #d1fae5;
+    }
+
+    .contact-btn.primary:hover {
+      border-color: rgba(74, 222, 128, 0.6);
+      background: rgba(74, 222, 128, 0.1);
+    }
+
+    .contact-btn-icon {
+      font-size: 1rem;
+      width: 22px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .contact-btn-label { flex: 1; font-weight: 500; }
+
+    .contact-btn-arrow {
+      font-size: 0.8rem;
+      color: var(--text-3);
+      margin-left: auto;
+    }
+
+    .contact-note {
+      font-size: 0.72rem;
+      color: var(--text-3);
+      margin-top: 10px;
+    }
+
+    /* ────────────────────────────────────────────────
+       FOOTER
+    ──────────────────────────────────────────────── */
+    .footer {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 0.72rem;
+      color: var(--text-3);
+    }
+
+    .footer a {
+      color: var(--text-3);
+      transition: color 140ms;
+    }
+
+    .footer a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- ── NAV ── -->
+    <nav class="nav" aria-label="Site navigation">
+      <div class="nav-brand">
+        <div class="logotype" aria-hidden="true">RG</div>
+        <div>
+          <div class="nav-name">Roger Garcia</div>
+          <div class="nav-role">Operations · AI · Digital Strategy</div>
+        </div>
+      </div>
+      <div class="nav-links">
+        <button class="nav-link" onclick="scrollToId('services')">Services</button>
+        <button class="nav-link" onclick="scrollToId('proof')">About</button>
+        <button class="nav-link cta" onclick="scrollToId('contact')">Let's talk →</button>
+      </div>
+    </nav>
+
+    <!-- ── TWO-COLUMN GRID ── -->
+    <div class="grid">
+
+      <!-- ════════════ LEFT ════════════ -->
+      <div class="col-left">
+
+        <!-- HERO -->
+        <section id="hero" class="hero" aria-labelledby="hero-h1">
+          <div class="hero-label">
+            <span class="hero-label-dot" aria-hidden="true"></span>
+            Available for new engagements · Toronto, Canada
+          </div>
+
+          <h1 id="hero-h1">
+            Your business grew.<br>
+            Your systems didn't.<br>
+            <em>Let's fix that.</em>
+          </h1>
+
+          <p class="hero-sub">
+            I help <strong>owners and leadership teams</strong> with multiple lines of business,
+            patchwork tools, and overloaded staff move from reactive firefighting to
+            a calm, predictable operating system — one their team can actually run.
+          </p>
+
+          <div class="stats" role="list" aria-label="Who this is for">
+            <div class="stat" role="listitem">
+              <div class="stat-label">Who</div>
+              <div class="stat-value">Owners &amp; leadership</div>
+              <div class="stat-hint">10–150 people, multiple offers</div>
+            </div>
+            <div class="stat" role="listitem">
+              <div class="stat-label">Outcome</div>
+              <div class="stat-value">Fewer fires, cleaner ops</div>
+              <div class="stat-hint">What to stop, start, systemize</div>
+            </div>
+            <div class="stat" role="listitem">
+              <div class="stat-label">Approach</div>
+              <div class="stat-value">Hands-on, not just slides</div>
+              <div class="stat-hint">Workflows &amp; automations, built together</div>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary" onclick="event.preventDefault(); scrollToId('contact')">
+              <span class="btn-icon">↗</span>
+              Book a 30-minute fit call
+            </a>
+            <button class="btn" onclick="scrollToId('services')">
+              <span class="btn-icon">⚙︎</span>
+              See services
+            </button>
+            <span class="action-note">Honest questions. Clear trade-offs. Systems you can hand off.</span>
+          </div>
+        </section>
+
+        <!-- SERVICES -->
+        <section id="services" aria-label="Services">
+          <div class="section-label">Services</div>
+          <div class="services-grid">
+
+            <article class="service-card featured">
+              <div class="service-badge green">Start here</div>
+              <div class="service-title">Operations &amp; Digital Diagnostic</div>
+              <p class="service-body">
+                A focused review of how work, information, and revenue flow through your business today —
+                with a ranked issue list and a clear 90-day action plan. Fixed-fee, scoped to your complexity.
+              </p>
+              <div class="service-foot">
+                <span class="service-meta">2–3 weeks · Fixed fee</span>
+                <span class="service-arrow">Most clients start here →</span>
+              </div>
+            </article>
+
+            <article class="service-card">
+              <div class="service-badge">Implementation</div>
+              <div class="service-title">AI &amp; Workflow Sprints</div>
+              <p class="service-body">
+                We pick one or two critical workflows — lead handling, onboarding, reporting —
+                and design pragmatic AI-driven processes that reduce manual work and errors.
+              </p>
+              <div class="service-foot">
+                <span class="service-meta">4–6 weeks · Sprint</span>
+                <span class="service-arrow">One major workflow →</span>
+              </div>
+            </article>
+
+            <article class="service-card">
+              <div class="service-badge">Ongoing</div>
+              <div class="service-title">Fractional Ops &amp; Strategy</div>
+              <p class="service-body">
+                Part-time support to keep initiatives moving, hold the roadmap, and keep you out of the weeds
+                while your team adopts new systems.
+              </p>
+              <div class="service-foot">
+                <span class="service-meta">Monthly · Limited spots</span>
+                <span class="service-arrow">Enquire →</span>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+        <!-- PROCESS -->
+        <section aria-label="How we work">
+          <div class="process-card">
+            <div class="section-label">How we work together</div>
+            <div class="steps">
+              <article class="step">
+                <div class="step-num">Step 01</div>
+                <div class="step-title">Map the real business</div>
+                <p class="step-body">
+                  We inventory your offers, tools, and roles — then trace how leads,
+                  customers, and money actually move across your units and channels.
+                </p>
+              </article>
+              <article class="step">
+                <div class="step-num">Step 02</div>
+                <div class="step-title">Find the leverage points</div>
+                <p class="step-body">
+                  Together we pick a small set of high-impact problems to solve first,
+                  with clear constraints on budget, capacity, and risk.
+                </p>
+              </article>
+              <article class="step">
+                <div class="step-num">Step 03</div>
+                <div class="step-title">Build, test, and hand off</div>
+                <p class="step-body">
+                  We design workflows, automations, and decision routines — tested in your
+                  real environment, then documented in playbooks your team can run.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+      </div><!-- /col-left -->
+
+      <!-- ════════════ RIGHT ════════════ -->
+      <aside class="col-right">
+
+        <!-- POSITIONING -->
+        <section class="card" aria-label="Positioning">
+          <h3>Complex operations need an integrated thinker — not another specialist silo.</h3>
+          <p class="card-body">
+            I work with SMB/SME teams that outgrew their original systems: multiple offers,
+            channels, and tools, but no single view of what's working or why. My work sits at
+            the intersection of <strong>operations, digital, and AI/automation</strong> —
+            solving problems end-to-end, not handing them between consultants who never talk.
+          </p>
+          <p class="card-body">
+            If you're done with generic advice and decks that never hit the front line —
+            and you want a thinking partner who will challenge your assumptions and
+            help build real systems — we're likely a fit.
+          </p>
+          <div class="tag-row">
+            <span class="tag accent">Complex SMB/SME ops</span>
+            <span class="tag">AI &amp; automation</span>
+            <span class="tag">Digital marketing</span>
+            <span class="tag">Workflow design</span>
+            <span class="tag">Decision frameworks</span>
+          </div>
+        </section>
+
+        <!-- PROOF -->
+        <section id="proof" class="card" aria-label="Example outcomes">
+          <h3>What the work actually looks like</h3>
+          <div class="proof-list">
+            <div class="proof-item">
+              <div class="proof-line"></div>
+              <p class="proof-text">
+                <strong>Untangled overlapping offers</strong> across three business units so leadership could finally see — and communicate — where revenue was actually coming from.
+              </p>
+            </div>
+            <div class="proof-item">
+              <div class="proof-line"></div>
+              <p class="proof-text">
+                <strong>Redesigned a broken lead routing process</strong> for a B2B firm — cut handoff delays and removed five manual steps causing weekly errors.
+              </p>
+            </div>
+            <div class="proof-item">
+              <div class="proof-line"></div>
+              <p class="proof-text">
+                <strong>Built reporting dashboards</strong> giving an owner a single view across three revenue streams for the first time, reducing weekly "where are we?" meetings.
+              </p>
+            </div>
+            <div class="proof-item">
+              <div class="proof-line"></div>
+              <p class="proof-text">
+                <strong>Implemented AI-assisted triage</strong> in a service team's inbox, reducing response time without adding headcount.
+              </p>
+            </div>
+          </div>
+          <div class="client-types">
+            <span class="client-chip">Service businesses</span>
+            <span class="client-chip">Product + service hybrids</span>
+            <span class="client-chip">Education &amp; training</span>
+            <span class="client-chip">B2B long sales cycles</span>
+          </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="contact-card" aria-label="Contact">
+          <h3>Tell me about your next 90 days.</h3>
+          <p class="contact-body">
+            Share a quick snapshot: your biggest constraint, what your team looks like,
+            and what a real win means for your business this quarter. I'll respond with
+            honest questions and, if there's a fit, a simple way to move forward.
+          </p>
+          <div class="contact-actions">
+            <button class="contact-btn primary" onclick="openEmail()">
+              <span class="contact-btn-icon">✉︎</span>
+              <span class="contact-btn-label">Send me a note</span>
+              <span class="contact-btn-arrow">→</span>
+            </button>
+            <a class="contact-btn" href="https://www.linkedin.com/in/rogergarcia/" target="_blank" rel="noreferrer">
+              <span class="contact-btn-icon">💼</span>
+              <span class="contact-btn-label">Connect on LinkedIn</span>
+              <span class="contact-btn-arrow">↗</span>
+            </a>
+          </div>
+          <p class="contact-note">
+            Responds within 1–2 business days. Remote &amp; Toronto-based engagements.
+          </p>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+          <span>© <span id="yr"></span> Roger Garcia</span>
+          <span>
+            <a href="https://www.linkedin.com/in/rogergarcia/" target="_blank" rel="noreferrer">LinkedIn</a>
+            &nbsp;·&nbsp;
+            <a href="mailto:rgarcia@ikg-grp.com">rgarcia@ikg-grp.com</a>
+          </span>
+        </footer>
+
+      </aside><!-- /col-right -->
+    </div><!-- /grid -->
+  </div><!-- /wrap -->
+
+  <script>
+    function scrollToId(id) {
+      var el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function openEmail() {
+      var s = encodeURIComponent("Consulting enquiry — Let's connect");
+      var b = encodeURIComponent(
+        "Hi Roger,\n\nA quick snapshot of my situation:\n\n" +
+        "• Business and my role:\n" +
+        "• Team size and number of core offers or business units:\n" +
+        "• Biggest constraint right now:\n" +
+        "• What a meaningful win looks like in the next 90 days:\n" +
+        "• Hard constraints (budget, timing, capacity):\n\n" +
+        "Looking forward to connecting."
+      );
+      window.location.href = "mailto:rgarcia@ikg-grp.com?subject=" + s + "&body=" + b;
+    }
+
+    document.getElementById("yr").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

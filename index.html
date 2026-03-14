@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Roger Garcia — SMB/SME Operations & Strategy Consultant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Roger Garcia is a consultant and digital strategist in Toronto helping complex SMB and SME businesses untangle operations, implement AI & automation, and build systems that scale." />
+  <style>
+    /* ─── TOKENS ─────────────────────────────────── */
+    :root {
+      --bg:       #0c0c0e;
+      --s1:       #141416;
+      --s2:       #1c1c1f;
+      --line:     #252529;
+      --line-mid: #34343a;
+      --green:    #4ade80;
+      --green-bg: rgba(74, 222, 128, 0.07);
+      --t1:       #edeef0;
+      --t2:       #8a8b96;
+      --t3:       #6e6f79;
+      --sans:     system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --mono:     ui-monospace, "SF Mono", "Fira Code", monospace;
+    }
+
+    /* ─── RESET ──────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--t1);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: var(--sans); }
+
+    /* ─── LAYOUT ─────────────────────────────────── */
+    .outer {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    @media (max-width: 600px) { .outer { padding: 0 16px 60px; } }
+
+    /* ─── NAV ────────────────────────────────────── */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 28px 0 26px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 48px;
+    }
+
+    .nav-id {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .nav-name {
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--t1);
+    }
+
+    .nav-slash {
+      color: var(--t3);
+      font-weight: 300;
+      font-size: 1rem;
+    }
+
+    .nav-role {
+      font-size: 0.8rem;
+      color: var(--t2);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .nav-btn {
+      font-size: 0.79rem;
+      color: var(--t2);
+      padding: 6px 11px;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      background: none;
+      cursor: pointer;
+      transition: color 120ms, background 120ms, border-color 120ms;
+    }
+
+    .nav-btn:hover {
+      color: var(--t1);
+      background: var(--s1);
+      border-color: var(--line);
+    }
+
+    .nav-btn-cta {
+      color: var(--green);
+      border-color: var(--line-mid);
+      background: var(--green-bg);
+    }
+
+    .nav-btn-cta:hover {
+      background: rgba(74, 222, 128, 0.12);
+      border-color: rgba(74, 222, 128, 0.35);
+      color: #86efac;
+    }
+
+    @media (max-width: 540px) {
+      .nav-btn:not(.nav-btn-cta) { display: none; }
+      .nav-role { display: none; }
+    }
+
+    /* ─── GRID ───────────────────────────────────── */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 356px;
+      gap: 40px;
+      align-items: start;
+    }
+
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; gap: 28px; }
+    }
+
+    .col-l, .col-r { display: flex; flex-direction: column; gap: 1px; }
+
+    /* shared section spacing */
+    .section { padding: 32px 0 28px; border-bottom: 1px solid var(--line); }
+    .section:last-child { border-bottom: none; }
+
+    /* ─── HERO ───────────────────────────────────── */
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--t3);
+      letter-spacing: 0.06em;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow-rule {
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: var(--line-mid);
+    }
+
+    .hero-h1 {
+      font-size: clamp(1.85rem, 4vw, 2.6rem);
+      font-weight: 700;
+      line-height: 1.18;
+      letter-spacing: -0.04em;
+      color: var(--t1);
+      margin-bottom: 20px;
+    }
+
+    .hero-h1 .accent { color: var(--green); }
+
+    .hero-p {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: var(--t2);
+      max-width: 480px;
+      margin-bottom: 32px;
+    }
+
+    .hero-p strong { color: var(--t1); font-weight: 500; }
+
+    /* Fact row */
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+
+    .fact {
+      padding: 14px 16px;
+      background: var(--s1);
+      border-right: 1px solid var(--line);
+    }
+
+    .fact:last-child { border-right: none; }
+
+    .fact-label {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      color: var(--t3);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .fact-value {
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--t1);
+      margin-bottom: 3px;
+    }
+
+    .fact-hint { font-size: 0.72rem; color: var(--t2); }
+
+    @media (max-width: 540px) {
+      .facts { grid-template-columns: 1fr 1fr; }
+      .fact:nth-child(2) { border-right: none; }
+      .fact:nth-child(3) { border-top: 1px solid var(--line); grid-column: 1 / -1; }
+    }
+
+    /* CTA row */
+    .cta-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.84rem;
+      font-weight: 500;
+      padding: 10px 18px;
+      border-radius: 8px;
+      border: 1px solid var(--line-mid);
+      background: var(--s1);
+      color: var(--t2);
+      cursor: pointer;
+      transition: border-color 130ms, color 130ms, background 130ms;
+    }
+
+    .btn:hover { border-color: var(--line-mid); color: var(--t1); background: var(--s2); }
+
+    .btn-primary {
+      border-color: rgba(74, 222, 128, 0.4);
+      background: var(--green-bg);
+      color: #bbf7d0;
+    }
+
+    .btn-primary:hover {
+      border-color: rgba(74, 222, 128, 0.65);
+      background: rgba(74, 222, 128, 0.11);
+      color: #d1fae5;
+    }
+
+    .cta-note { font-size: 0.74rem; color: var(--t3); }
+
+    /* ─── SERVICES ───────────────────────────────── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      color: var(--t3);
+      text-transform: uppercase;
+    }
+
+    .section-rule { flex: 1; height: 1px; background: var(--line); }
+
+    .service-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .service-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: start;
+      gap: 16px;
+      padding: 18px 20px;
+      background: var(--s1);
+      border-bottom: 1px solid var(--line);
+      transition: background 130ms;
+      cursor: default;
+    }
+
+    .service-row:last-child { border-bottom: none; }
+    .service-row:hover { background: var(--s2); }
+
+    .service-row.featured { background: var(--s2); }
+
+    .service-tag {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      color: var(--t3);
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .service-tag.green { color: var(--green); }
+
+    .service-name {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--t1);
+      letter-spacing: -0.01em;
+      margin-bottom: 5px;
+    }
+
+    .service-desc {
+      font-size: 0.78rem;
+      line-height: 1.6;
+      color: var(--t2);
+    }
+
+    .service-meta {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--t3);
+      white-space: nowrap;
+      text-align: right;
+      padding-top: 2px;
+    }
+
+    /* ─── PROCESS ────────────────────────────────── */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    @media (max-width: 580px) {
+      .steps { grid-template-columns: 1fr; }
+    }
+
+    .step {
+      padding: 16px 16px 14px;
+      background: var(--s1);
+      border-right: 1px solid var(--line);
+    }
+
+    .step:last-child { border-right: none; }
+
+    .step-n {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: var(--green);
+      opacity: 0.6;
+      margin-bottom: 8px;
+    }
+
+    .step-title {
+      font-size: 0.83rem;
+      font-weight: 600;
+      color: var(--t1);
+      margin-bottom: 6px;
+    }
+
+    .step-body { font-size: 0.75rem; line-height: 1.6; color: var(--t2); }
+
+    /* ─── SIDEBAR ────────────────────────────────── */
+    .card {
+      padding: 24px 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .card:last-child { border-bottom: none; }
+
+    .card-h {
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--t1);
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+
+    .card-p {
+      font-size: 0.78rem;
+      line-height: 1.7;
+      color: var(--t2);
+      margin-bottom: 10px;
+    }
+
+    .card-p:last-of-type { margin-bottom: 0; }
+    .card-p strong { color: var(--t1); font-weight: 500; }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 14px;
+    }
+
+    .tag {
+      font-size: 0.67rem;
+      padding: 3px 9px;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      background: var(--s2);
+      color: var(--t2);
+    }
+
+    .tag.g {
+      border-color: rgba(74, 222, 128, 0.22);
+      color: var(--green);
+      background: var(--green-bg);
+    }
+
+    /* Proof items */
+    .proof-list { display: flex; flex-direction: column; gap: 14px; }
+
+    .proof-item { display: flex; gap: 12px; align-items: flex-start; }
+
+    .proof-bar {
+      width: 2px;
+      flex-shrink: 0;
+      align-self: stretch;
+      background: var(--line-mid);
+      border-radius: 2px;
+      min-height: 16px;
+    }
+
+    .proof-item:first-child .proof-bar { background: var(--green); }
+
+    .proof-text { font-size: 0.77rem; line-height: 1.6; color: var(--t2); }
+    .proof-text strong { color: var(--t1); font-weight: 500; }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+
+    .chip {
+      font-size: 0.65rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      color: var(--t3);
+    }
+
+    /* Contact */
+    .contact-card {
+      padding: 24px 20px;
+    }
+
+    .contact-h { font-size: 0.88rem; font-weight: 600; color: var(--t1); margin-bottom: 10px; }
+
+    .contact-p { font-size: 0.78rem; line-height: 1.7; color: var(--t2); margin-bottom: 16px; }
+
+    .contact-actions { display: flex; flex-direction: column; gap: 6px; }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: var(--s1);
+      font-size: 0.81rem;
+      color: var(--t2);
+      cursor: pointer;
+      transition: border-color 120ms, color 120ms, background 120ms;
+    }
+
+    .contact-item:hover {
+      border-color: var(--line-mid);
+      color: var(--t1);
+      background: var(--s2);
+    }
+
+    .contact-item.primary {
+      border-color: rgba(74, 222, 128, 0.3);
+      color: #bbf7d0;
+      background: var(--green-bg);
+    }
+
+    .contact-item.primary:hover {
+      border-color: rgba(74, 222, 128, 0.55);
+      background: rgba(74, 222, 128, 0.1);
+    }
+
+    .ci-label { flex: 1; font-weight: 500; }
+    .ci-arrow { font-size: 0.75rem; color: var(--t3); margin-left: auto; }
+
+    .contact-note {
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      color: var(--t3);
+      margin-top: 12px;
+    }
+
+    /* ─── SIDEBAR SHELL ──────────────────────────── */
+    .sidebar-shell {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--s1);
+    }
+
+    /* ─── FOOTER ─────────────────────────────────── */
+    .footer {
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--t3);
+    }
+
+    .footer a { color: var(--t3); transition: color 120ms; }
+    .footer a:hover { color: var(--t2); }
+  </style>
+</head>
+<body>
+  <div class="outer">
+
+    <!-- NAV -->
+    <nav class="nav">
+      <div class="nav-id">
+        <span class="nav-name">Roger Garcia</span>
+        <span class="nav-slash">/</span>
+        <span class="nav-role">Operations · AI · Digital Strategy</span>
+      </div>
+      <div class="nav-links">
+        <button class="nav-btn" onclick="scrollToId('services')">Services</button>
+        <button class="nav-btn" onclick="scrollToId('about')">About</button>
+        <button class="nav-btn nav-btn-cta" onclick="scrollToId('contact')">Let's talk →</button>
+      </div>
+    </nav>
+
+    <!-- GRID -->
+    <div class="grid">
+
+      <!-- ══ LEFT ══ -->
+      <div class="col-l">
+
+        <!-- HERO -->
+        <div class="section">
+          <div class="hero-eyebrow">
+            <span class="eyebrow-rule"></span>
+            Toronto, Canada &nbsp;·&nbsp; Available for new engagements
+          </div>
+          <h1 class="hero-h1">
+            Your business grew.<br>
+            Your systems didn't.<br>
+            <span class="accent">Let's fix that.</span>
+          </h1>
+          <p class="hero-p">
+            I help <strong>owners and leadership teams</strong> with multiple lines of business,
+            patchwork tools, and overloaded staff move from reactive firefighting to a calm,
+            predictable operating system — one their team can actually run.
+          </p>
+
+          <div class="facts">
+            <div class="fact">
+              <div class="fact-label">Who</div>
+              <div class="fact-value">Owners &amp; leadership</div>
+              <div class="fact-hint">10–150 people, multiple offers</div>
+            </div>
+            <div class="fact">
+              <div class="fact-label">Outcome</div>
+              <div class="fact-value">Fewer fires, cleaner ops</div>
+              <div class="fact-hint">What to stop, start, systemize</div>
+            </div>
+            <div class="fact">
+              <div class="fact-label">Approach</div>
+              <div class="fact-value">Hands-on, not just slides</div>
+              <div class="fact-hint">Workflows &amp; automations, built together</div>
+            </div>
+          </div>
+
+          <div class="cta-row">
+            <a href="#contact" class="btn btn-primary" onclick="event.preventDefault(); scrollToId('contact')">
+              ↗ Book a 30-minute fit call
+            </a>
+            <button class="btn" onclick="scrollToId('services')">⚙︎ See services</button>
+            <span class="cta-note">Honest questions. Clear trade-offs. No deck without a plan.</span>
+          </div>
+        </div>
+
+        <!-- SERVICES -->
+        <div id="services" class="section">
+          <div class="section-header">
+            <span class="section-title">Services</span>
+            <span class="section-rule"></span>
+          </div>
+          <div class="service-list">
+            <div class="service-row featured">
+              <div>
+                <div class="service-tag green">Start here</div>
+                <div class="service-name">Operations &amp; Digital Diagnostic</div>
+                <p class="service-desc">
+                  A focused review of how work, information, and revenue flow through your business
+                  today — ranked issue list and a clear 90-day action plan.
+                  Fixed-fee, scoped to your complexity.
+                </p>
+              </div>
+              <div class="service-meta">2–3 weeks<br>Fixed fee</div>
+            </div>
+            <div class="service-row">
+              <div>
+                <div class="service-tag">Implementation</div>
+                <div class="service-name">AI &amp; Workflow Sprints</div>
+                <p class="service-desc">
+                  We pick one or two critical workflows — lead handling, onboarding, reporting —
+                  and design pragmatic AI-driven processes that reduce manual work and errors.
+                </p>
+              </div>
+              <div class="service-meta">4–6 weeks<br>Sprint</div>
+            </div>
+            <div class="service-row">
+              <div>
+                <div class="service-tag">Ongoing</div>
+                <div class="service-name">Fractional Ops &amp; Strategy</div>
+                <p class="service-desc">
+                  Part-time support to keep initiatives moving, hold the roadmap,
+                  and keep you out of the weeds while your team adopts new systems.
+                </p>
+              </div>
+              <div class="service-meta">Monthly<br>Limited spots</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROCESS -->
+        <div class="section" style="border-bottom:none">
+          <div class="section-header">
+            <span class="section-title">How we work together</span>
+            <span class="section-rule"></span>
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-n">01</div>
+              <div class="step-title">Map the real business</div>
+              <p class="step-body">Inventory your offers, tools, and roles — trace how leads, customers, and money actually move across your units.</p>
+            </div>
+            <div class="step">
+              <div class="step-n">02</div>
+              <div class="step-title">Find the leverage points</div>
+              <p class="step-body">Pick a small set of high-impact problems to solve first, with clear constraints on budget, capacity, and risk.</p>
+            </div>
+            <div class="step">
+              <div class="step-n">03</div>
+              <div class="step-title">Build, test, hand off</div>
+              <p class="step-body">Design workflows, automations, and decision routines — tested live, then documented in playbooks your team can run.</p>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /col-l -->
+
+      <!-- ══ RIGHT ══ -->
+      <aside class="col-r">
+        <div id="about" class="sidebar-shell">
+
+          <!-- Positioning -->
+          <div class="card">
+            <div class="card-h">Complex operations need an integrated thinker — not another specialist silo.</div>
+            <p class="card-p">
+              I work with SMB/SME teams that outgrew their original systems: multiple offers, channels,
+              and tools, but no single view of what's working or why. My work sits at the intersection
+              of <strong>operations, digital, and AI/automation</strong> — solving problems
+              end-to-end, not handing them off between consultants who never talk.
+            </p>
+            <p class="card-p">
+              If you're done with generic advice and decks that never hit the front line, and you want
+              a thinking partner who will challenge your assumptions and help build real systems —
+              we're likely a fit.
+            </p>
+            <div class="tag-row">
+              <span class="tag g">Complex SMB/SME ops</span>
+              <span class="tag">AI &amp; automation</span>
+              <span class="tag">Digital marketing</span>
+              <span class="tag">Workflow design</span>
+              <span class="tag">Decision frameworks</span>
+            </div>
+          </div>
+
+          <!-- Proof -->
+          <div class="card">
+            <div class="card-h">What the work actually looks like</div>
+            <div class="proof-list">
+              <div class="proof-item">
+                <div class="proof-bar"></div>
+                <p class="proof-text"><strong>Untangled overlapping offers</strong> across three business units so leadership could finally see where revenue was actually coming from.</p>
+              </div>
+              <div class="proof-item">
+                <div class="proof-bar"></div>
+                <p class="proof-text"><strong>Redesigned broken lead routing</strong> for a B2B firm — cut handoff delays and removed five manual steps causing weekly errors.</p>
+              </div>
+              <div class="proof-item">
+                <div class="proof-bar"></div>
+                <p class="proof-text"><strong>Built reporting dashboards</strong> giving an owner a single view across three revenue streams for the first time.</p>
+              </div>
+              <div class="proof-item">
+                <div class="proof-bar"></div>
+                <p class="proof-text"><strong>Implemented AI-assisted triage</strong> in a service team's inbox, reducing response time without adding headcount.</p>
+              </div>
+            </div>
+            <div class="chips">
+              <span class="chip">Service businesses</span>
+              <span class="chip">Product + service hybrids</span>
+              <span class="chip">Education &amp; training</span>
+              <span class="chip">B2B long sales cycles</span>
+            </div>
+          </div>
+
+          <!-- Contact -->
+          <div id="contact" class="contact-card">
+            <div class="contact-h">Tell me about your next 90 days.</div>
+            <p class="contact-p">
+              Share your biggest constraint, what your team looks like, and what a real win means
+              for your business this quarter. I'll respond with honest questions and,
+              if there's a fit, a simple way to move forward.
+            </p>
+            <div class="contact-actions">
+              <button class="contact-item primary" onclick="openEmail()">
+                <span>✉︎</span>
+                <span class="ci-label">Send me a note</span>
+                <span class="ci-arrow">→</span>
+              </button>
+              <a class="contact-item" href="https://www.linkedin.com/in/rogergarcia/" target="_blank" rel="noreferrer">
+                <span>💼</span>
+                <span class="ci-label">Connect on LinkedIn</span>
+                <span class="ci-arrow">↗</span>
+              </a>
+            </div>
+            <p class="contact-note">Responds within 1–2 business days · Remote &amp; Toronto-based</p>
+          </div>
+
+        </div><!-- /sidebar-shell -->
+      </aside>
+
+    </div><!-- /grid -->
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <span>© <span id="yr"></span> Roger Garcia — All rights reserved</span>
+      <span>
+        <a href="https://www.linkedin.com/in/rogergarcia/" target="_blank" rel="noreferrer">LinkedIn</a>
+        &nbsp;·&nbsp;
+        <a href="mailto:rgarcia@ikg-grp.com">rgarcia@ikg-grp.com</a>
+      </span>
+    </footer>
+
+  </div><!-- /outer -->
+
+  <script>
+    function scrollToId(id) {
+      var el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    function openEmail() {
+      var s = encodeURIComponent("Consulting enquiry — Let's connect");
+      var b = encodeURIComponent(
+        "Hi Roger,\n\nA quick snapshot of my situation:\n\n" +
+        "• Business and my role:\n" +
+        "• Team size and number of core offers or business units:\n" +
+        "• Biggest constraint right now:\n" +
+        "• What a meaningful win looks like in the next 90 days:\n" +
+        "• Hard constraints (budget, timing, capacity):\n\n" +
+        "Looking forward to connecting."
+      );
+      window.location.href = "mailto:rgarcia@ikg-grp.com?subject=" + s + "&body=" + b;
+    }
+    document.getElementById("yr").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
