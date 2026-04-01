@@ -1,4 +1,4 @@
-# Contuling — Roger Garcia Consulting Site
+# Consulting — Roger Garcia Consulting Site
 
 Personal consulting landing page for **Roger Garcia** — Operations, AI & Digital Strategy consultant based in Toronto, helping SMB/SME businesses untangle operations and build systems that scale.
 
