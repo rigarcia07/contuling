@@ -2,7 +2,7 @@
 
 Personal consulting landing page for **Roger Garcia** — Operations, AI & Digital Strategy consultant based in Toronto, helping SMB/SME businesses untangle operations and build systems that scale.
 
-**Live site → [rigarcia07.github.io/contuling](https://rigarcia07.github.io/contuling)**
+**Live site → [rigarcia07.github.io/consulting](https://rigarcia07.github.io/contuling)**
 
 ---
 
