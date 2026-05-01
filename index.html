@@ -605,22 +605,7 @@
       background: rgba(194, 147, 58, 0.12);
     }
 
-    /* Google Calendar scheduling button — normalize to match contact-item row */
-    .gcal-wrapper { display: block; }
-    .gcal-wrapper > button,
-    .gcal-wrapper [role="button"],
-    .gcal-wrapper a[class] {
-      width: 100% !important;
-      border-radius: 8px !important;
-      font-size: 0.81rem !important;
-      box-sizing: border-box !important;
-      padding: 10px 14px !important;
-      height: auto !important;
-      line-height: normal !important;
-      font-weight: 500 !important;
-    }
-
-    .ci-label { flex: 1; font-weight: 500; }
+.ci-label { flex: 1; font-weight: 500; }
     .ci-arrow { font-size: 0.75rem; color: var(--t3); margin-left: auto; }
 
     .contact-note {
@@ -911,25 +896,11 @@
               if there's a fit.
             </p>
             <div class="contact-actions">
-              <!-- Google Calendar Appointment Scheduling begin -->
-              <div class="gcal-wrapper">
-                <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
-                <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
-                <script>
-                (function() {
-                  var target = document.currentScript;
-                  window.addEventListener('load', function() {
-                    calendar.schedulingButton.load({
-                      url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1MxrPjJu8TdYtDQ6MxyyW0A-9pBaRjnCeNtmr8wZI7snRth0NguVVS_OamJbmcBNeO-d4lwTBa?gv=true',
-                      color: '#1A2B38',
-                      label: "Book a 30 min fit call",
-                      target,
-                    });
-                  });
-                })();
-                </script>
-              </div>
-              <!-- end Google Calendar Appointment Scheduling -->
+              <a class="contact-item primary" href="https://shr.pn/fitcall" target="_blank" rel="noreferrer">
+                <span>📅</span>
+                <span class="ci-label">Book a 30 min fit call</span>
+                <span class="ci-arrow">↗</span>
+              </a>
               <button class="contact-item" onclick="openEmail()">
                 <span>✉︎</span>
                 <span class="ci-label">Send a note instead</span>
